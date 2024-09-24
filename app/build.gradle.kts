@@ -7,6 +7,10 @@ android {
     namespace = "com.ismailmesutmujde.kotlininternetbasedtransactionsretrofitlibrary"
     compileSdk = 34
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.ismailmesutmujde.kotlininternetbasedtransactionsretrofitlibrary"
         minSdk = 24
@@ -45,4 +49,11 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.1.0")
+
+    // JSON Parse
+    implementation("com.google.code.gson:gson:2.8.2")
+    implementation("com.squareup.retrofit2:converter-gson:2.1.0")
 }
