@@ -20,7 +20,8 @@ class MainActivity : AppCompatActivity() {
         //deletePerson()
         //insertPerson()
         //updatePerson()
-        allPersons()
+        //allPersons()
+        searchPerson()
     }
 
     fun deletePerson() {
@@ -79,6 +80,28 @@ class MainActivity : AppCompatActivity() {
     fun allPersons() {
         val pdi = ApiUtils.getPersonsDaoInterface()
         pdi.allPersons().enqueue(object : Callback<PersonsAnswer>{
+            override fun onResponse(call: Call<PersonsAnswer>?, response: Response<PersonsAnswer>?) {
+                if (response != null) {
+                    val personsList = response.body().persons
+
+                    for(p in personsList) {
+                        Log.e("***********","***********")
+                        Log.e("Person id", (p.personId).toString())
+                        Log.e("Person name", (p.personName))
+                        Log.e("Person phone", (p.personPhone))
+                    }
+                }
+            }
+
+            override fun onFailure(call: Call<PersonsAnswer>?, t: Throwable?) {
+
+            }
+        })
+    }
+
+    fun searchPerson() {
+        val pdi = ApiUtils.getPersonsDaoInterface()
+        pdi.searchPerson("i").enqueue(object : Callback<PersonsAnswer>{
             override fun onResponse(call: Call<PersonsAnswer>?, response: Response<PersonsAnswer>?) {
                 if (response != null) {
                     val personsList = response.body().persons

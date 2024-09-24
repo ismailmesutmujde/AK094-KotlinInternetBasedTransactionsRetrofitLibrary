@@ -28,5 +28,9 @@ interface PersonsDaoInterface {
     @GET("kisiler/tum_kisiler.php")
     fun allPersons(): Call<PersonsAnswer>
 
+    @POST("kisiler/tum_kisiler_arama.php")
+    @FormUrlEncoded
+    fun searchPerson(@Field("kisi_ad") person_name: String) : Call<PersonsAnswer>
+
 
 }
