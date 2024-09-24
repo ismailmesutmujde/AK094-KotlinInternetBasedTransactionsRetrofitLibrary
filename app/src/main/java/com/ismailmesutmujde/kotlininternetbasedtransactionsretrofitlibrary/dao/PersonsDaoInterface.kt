@@ -12,5 +12,10 @@ interface PersonsDaoInterface {
     @FormUrlEncoded
     fun deletePerson(@Field("kisi_id") person_id:Int) : Call<CRUDAnswer>
 
+    @POST("kisiler/insert_kisiler.php")
+    @FormUrlEncoded
+    fun insertPerson(@Field("kisi_ad") person_name: String,
+                 @Field("kisi_tel") person_phone:String) : Call<CRUDAnswer>
+
 
 }
