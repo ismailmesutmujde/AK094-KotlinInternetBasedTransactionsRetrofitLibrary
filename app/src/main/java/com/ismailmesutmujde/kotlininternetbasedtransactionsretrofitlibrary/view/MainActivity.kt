@@ -17,7 +17,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         //deletePerson()
-        insertPerson()
+        //insertPerson()
+        updatePerson()
     }
 
     fun deletePerson() {
@@ -54,4 +55,23 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
+
+    fun updatePerson() {
+        val pdi = ApiUtils.getPersonsDaoInterface()
+
+        pdi.updatePerson(17723,"ismail2","12341231234").enqueue(object : Callback<CRUDAnswer> {
+            override fun onResponse(call: Call<CRUDAnswer>?, response: Response<CRUDAnswer>?) {
+
+                if(response != null) {
+                    Log.e("Success", response.body().success.toString())
+                    Log.e("Message", response.body().message)
+                }
+            }
+
+            override fun onFailure(call: Call<CRUDAnswer>?, t: Throwable?) {
+
+            }
+        })
+    }
+
 }
